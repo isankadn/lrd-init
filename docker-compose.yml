@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mongo-to-clickhouse:
+    build: 
+      context: ../mongo-to-clickhouse
+      dockerfile: Dockerfile
+    container_name: mongo-to-clickhouse
+    depends_on:
+      - db
+    networks:
+      - lrd-network
+
+  opt-out:
+    build:
+      context: ../opt-out
+      dockerfile: Dockerfile
+    container_name: opt-out
+    depends_on:
+      - db
+    networks:
+      - lrd-network
+
+  db:
+    image: postgres:latest
+    container_name: db
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - lrd-network
+
+volumes:
+  db-data:
+
+networks:
+  lrd-network:
