@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: lrd_m2c
     volumes:
-      - ./config-dev.yml:/app/config-dev.yml
-      - ./config-prod.yml:/app/config-prod.yml
+      - ../mongo-to-clickhouse/config-dev.yml:/app/config-dev.yml
+      - ../mongo-to-clickhouse/config-prod.yml:/app/config-prod.yml
     depends_on:
       - db
     networks:
