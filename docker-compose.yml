@@ -13,7 +13,8 @@ services:
     
     networks:
       - lrd-network
-
+    ports:
+      - "8088:8088"
   # mongo-to-clickhouse_dev:
   #   build: 
   #     context: ../mongo-to-clickhouse
